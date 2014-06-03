@@ -1,0 +1,51 @@
+<ons-page class="center">
+
+<ons-navigator-toolbar title="Chat"></ons-navigator-toolbar>
+
+<ons-scroller class="center">
+
+
+
+
+<div class="bubble me">Bienvenido al Chat!</div>
+<div class="bubble you">Pon tu nick y empieza a chatear para que todos te veamos.</div>
+<div class="bubble me">Increible.</div>
+
+<div ng-controller="ChatController" > <a id="up" ng-click="goDown()"></a>
+	<ons-row>
+	<ons-col>
+
+	<div ng-repeat="mensaje in mensajes" >
+		<div  ng-class-odd="'me'" ng-class-even="'you'" class="bubble"><strong>{{mensaje.nombre}}:</strong> {{mensaje.mensaje}} <span style="font-size:0.7em">{{mensaje.time}}</span></div>
+
+	</div>
+
+</ons-col>
+</ons-row>
+</div>
+<a id="down" ng-click="goUp()" >. . .</a>
+</ons-scroller id="down">
+<div ng-controller="ChatController" >
+	<ons-bottom-toolbar>
+	<ons-row>
+
+
+<ons-col size="10"></ons-col> 
+<ons-col>
+	<ons-text-input ng-model="chatText" placeholder="chat ..."  style="width: 100%; height:40px" id="message"></ons-text-input>  
+</ons-col> 
+
+	<ons-col size="10">
+	<button class="topcoat-icon-button">
+  <i class="fa fa-comments" style="font-size:24px"   ng-click="addTodo()"></i> 
+</button>
+
+		
+	</ons-col> 
+</ons-row>
+
+
+</ons-bottom-toolbar>
+</div>
+
+</ons-page>

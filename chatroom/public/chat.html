@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html ng-app="chatroom">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title>chatroom</title>  
+	<link rel="stylesheet" href="css/bootstrap.min.css" />
+
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="css/chat.css">
+
+
+	<script src="js/lib/angular/angular.js"></script>    
+	<script src="js/lib/onsen/js/onsenui.js"></script>     
+
+
+</head>
+<body>
+
+
+
+	<div class="container" ng-controller="ChatController">
+
+		<div class="blog-header">
+			<h1 class="blog-title">Chat</h1>
+		</div>
+
+		<div class="row">
+
+			<div class="col-sm-6">
+
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<span class="glyphicon glyphicon-comment"></span> Chat
+
+					</div>
+					<div class="panel-body">
+						<ul class="chat">
+							<a id="up" ng-click="goDown()"></a>
+							<div ng-repeat="mensaje in mensajes" >
+
+								<li class="clearfix" ng-class-odd="'left'" ng-class-even="'right'">
+									<span class="chat-img" ng-class-odd="'pull-left'" ng-class-even="'pull-right'">
+										
+										<!-- <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle"> -->
+										  	<div style="float: left; width: 45px; padding-top: 50%; line-height: 1em; margin-top: -0.5em; text-align: center; color: white; ">{{mensaje.nombre.substring(0, 3)}}</div>
+											<div style="width: 100%; height: 0; padding-bottom: 100%; background: #{{'000000'.slice((mensaje.nombre.charCodeAt(0)*10000).toString(16).length) + (mensaje.nombre.charCodeAt(0)*10000).toString(16) }}; -moz-border-radius: 50%; -webkit-border-radius: 50%; border-radius: 50%;"></div>
+									</span>
+									<div class="chat-body clearfix">
+										<div class="header">
+											<strong class="primary-font" ng-class-odd="'pull-left'" ng-class-even="'pull-right'">{{mensaje.nombre}}</strong> <small class="text-muted"  ng-class-odd="'pull-right'">
+											<span class="glyphicon glyphicon-time"></span>{{mensaje.time}}</small>
+										</div><br><br>
+										<p>
+											{{mensaje.mensaje}}
+										</p>
+									</div>
+								</li>
+								
+							</div>
+							<br>
+							<a id="down" ng-click="goUp()" >. . .</a>
+
+						</ul>
+					</div>
+
+				</div>
+
+
+
+			</div><!-- /.blog-main -->
+
+			<div class="col-sm-6">
+
+				<div id="myCarousel" class="carousel slide vertical">
+					<!-- Carousel items -->
+					<div class="carousel-inner">
+						<div class="active item">
+							<img src="http://www.clubdarwin.net/sites/clubdarwin.net/files/cerve.jpg">
+						</div>
+						<div class="item">
+							<img src="http://lasoposiciones.net/wp-content/uploads/2011/03/Evitar-la-comida-chatarra1.jpg">
+						</div>
+						<div class="item">
+							<img src="http://www.nortedigital.mx/img/photos/img_517a1d80a82ad.jpg">
+						</div>
+					</div>
+					<!-- Carousel nav -->
+  	<!-- 						<a class="carousel-control left" href="#myCarousel" data-slide="prev">‹</a>
+  	<a class="carousel-control right" href="#myCarousel" data-slide="next">›</a> -->
+  </div>
+
+</div><!-- /.blog-sidebar -->
+
+</div><!-- /.row -->
+
+</div><!-- /.container -->
+
+
+
+
+
+<script type="text/javascript" src="/js/lib/jquery.js"></script>
+<script type="text/javascript" src="/dpd.js"></script>
+<script type="text/javascript" src="/js/chatroom.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script>
+	$('.carousel').carousel({
+		interval: 3000
+	})
+</script>
+</body>
+</html>
+
