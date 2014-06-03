@@ -11,11 +11,11 @@ http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat-centos-or-fed
 loopback with mongodb
 =====================
 
-1.- slc lb project aytob
+ 1.- slc lb project aytob
 
-2.- cd aytob
+ 2.- cd aytob
 
-3.- npm install loopback-datasource-juggler --save
+ 3.- npm install loopback-datasource-juggler --save
 
 4.- npm install loopback-connector-mongodb --save
 
