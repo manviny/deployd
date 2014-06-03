@@ -12,6 +12,10 @@ loopback queries
 
 http://chocomputer.com:3000/api/reservas?filter[where][fecha]=2014-06-30
 
+more examples
+
+http://docs.strongloop.com/display/DOC/Model+REST+API#ModelRESTAPI-Findmatchinginstances
+
 
  
 loopback with mongodb
