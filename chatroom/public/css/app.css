@@ -1,3 +1,11 @@
+.topcoat-text-input, .topcoat-text-input--transparent, .topcoat-text-input--underbar {
+  font-size: 2em;
+}
+.effeckt-button.slide-left > .label {
+    font-size: 1.8em;
+    background-color: transparent;
+}
+
 #bottom {
   display: block;
   margin-top: 2000px;

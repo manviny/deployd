@@ -1,42 +1,16 @@
-<ons-page style="background-color: white"  ng-controller="ChatController">
 
-	<ul class="topcoat-list">
 
-		<ons-list-item
-			class="topcoat-list__item--tappable topcoat-list__item__line-height" 
-			ng-click="ons.slidingMenu.toggleMenu(); 
-			ons.slidingMenu.setAbovePage('navigator1.html')">
-			<i class="fa fa-home fa-lg" style="color: #666"></i>
-			&nbsp; Page 1
-		</ons-list-item>
+    <ons-page style="padding : 8px" ng-controller="ChatController">
+        <ons-text-input 
+            ng-model="nickName"
+            placeholder="nickname" 
+            style="display: block; width: 100%; height:60px">
+        </ons-text-input>
 
-		<ons-list-item 
-			class="topcoat-list__item--tappable topcoat-list__item__line-height"
-			ng-click="ons.slidingMenu.toggleMenu(); 
-			ons.slidingMenu.setAbovePage('navigator2.html')">
-			<i class="fa fa-gear fa-lg" style="color: #666"></i>
-			&nbsp; Page 2
-		</ons-list-item>
-
-	</ul>
-	<ons-text-input style="width: 100%; margin-top: 8px; display: block" id="screen-name"  placeholder="nick" ng-model="nickName" ></ons-text-input>
-<span class="topcoat-notification">10</span>
-<br>
-<label class="topcoat-checkbox">
-  <input type="checkbox">
-  <div class="topcoat-checkbox__checkmark"></div>
-  OFF
-</label>
-<br>
-<label class="topcoat-checkbox">
-  <input type="checkbox" checked="checked">
-  <div class="topcoat-checkbox__checkmark"></div>
-  ON
-</label>
-<br>
-	<label class="topcoat-switch">
-  <input type="checkbox" class="topcoat-switch__input">
-  <div class="topcoat-switch__toggle"></div>
-</label>
-	<!-- <input type="text" class="input-small" id="screen-name" placeholder="Screen name" ng-model="nickName" /> -->
-</ons-page>
+        <ons-button 
+            type="cta-large" 
+            ng-click="ons.slidingMenu.toggleMenu();setNickName(nickName)"
+            style="display: block; width: 100%; margin-top: 8px;">
+            Ok
+        </ons-button>
+    </ons-page>

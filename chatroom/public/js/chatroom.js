@@ -1,30 +1,68 @@
-var todoApp = angular.module('chatroom',  ['onsen.directives']);
+var app = angular.module('chatroom',  ['onsen.directives']);
 
-todoApp.controller('ChatController', function($scope, $http, $location, $anchorScroll) {
+
+/**
+ * factory to do several tasks with the chat and share data
+ * @param  {[type]} $q [description]
+ * @return {[type]}    [description]
+ */
+app.factory('chatIO',[ '$q', function ($q) { 
+
+    var nickName;           
+
+
+    var setNickName = function (name){
+        nickName = name;
+    };
+
+    var getNickName = function (){
+        return nickName;
+    };
+
+    return {
+        setNickName: setNickName,
+        getNickName: getNickName,
+    }
+
+
+}]);
+
+app.controller('ChatController', function($scope, $http, $location, $anchorScroll, chatIO) {
   
   $scope.mensajes = [];
- // $scope.goDown();
+// alert($scope.ons.navigator.getCurrentPage().options.page);
+// $scope.ons.slidingMenu.toggleMenu();
 
-   $scope.goDown = function () {
-                $location.hash('down');
-                $anchorScroll();
-            }
-            $scope.goUp = function () {
-                $location.hash('up');
-                $anchorScroll();
-            }
+  // sets nickName globally through factory
+  $scope.setNickName = function(nickName){
+    chatIO.setNickName(nickName); 
+  }
+
   /**
-   * Lee mensajes al cargar la app
+   * helps to focus last message
+   * @return {[type]} [description]
+   */
+  $scope.goDown = function () {
+    $location.hash('down');
+    $anchorScroll();
+  }
+  $scope.goUp = function () {
+    $location.hash('up');
+    $anchorScroll();
+  }
+
+  /**
+   * Lee mensajes al cargar la app por 1º vez
+   * 
    * @param  {[type]} messages [description]
    * @return {[type]}          [description]
    */
   dpd.messages.get(function(messages) { 
     if (messages) { 
       messages.forEach(function(m) {
-      var today = new Date(m.date);
-      var hora = ((today.getHours()<10) ? ("0"+today.getHours()) : today.getHours() )+ ":"+ ((today.getMinutes()<10) ? ("0"+today.getMinutes()) : today.getMinutes()) ;
+        var today = new Date(m.date);
+        var hora = ((today.getHours()<10) ? ("0"+today.getHours()) : today.getHours() )+ ":"+ ((today.getMinutes()<10) ? ("0"+today.getMinutes()) : today.getMinutes());
         $scope.mensajes.push({'nombre':m.sender, 'mensaje': m.message, 'time':hora});
-        // renderMessage(m);
       });
       $scope.$apply(function () {
         $scope.mensajes;
@@ -45,12 +83,12 @@ todoApp.controller('ChatController', function($scope, $http, $location, $anchorS
       var today = new Date(m.date);
       var hora = ((today.getHours()<10) ? ("0"+today.getHours()) : today.getHours() )+ ":"+ ((today.getMinutes()<10) ? ("0"+today.getMinutes()) : today.getMinutes()) ;
       $scope.$apply(function () {
-            $scope.mensajes.push({'nombre':m.sender, 'mensaje': m.message, 'time':hora});
-        });
+        // si el usuario no soy yo acorta el mensaje a 3 caracteres      
+        if(m.sender!=chatIO.getNickName())  m.message = m.message.substring(0,4) + " ...";
+        $scope.mensajes.push({'nombre':m.sender, 'mensaje': m.message, 'time':hora});
+      });
     
   });
-
-
 
 
   // $scope.$watch("chatText", function(newValue, oldValue){
@@ -74,7 +112,12 @@ $scope.detecta = function(evento){
 
 
   $scope.addTodo = function(title) {
-    var sender = $('#screen-name').val();
+
+
+    // Si no hay nickName abre la ventana izquierad para que lo introducaza
+    if(!chatIO.getNickName()) {$scope.ons.slidingMenu.toggleMenu(); return} 
+   
+    var sender = chatIO.getNickName();     
     var message = $('#message').val();
   
       //$scope.mensajes.push({'nombre':sender, 'mensaje':message, 'time':'ee'});
