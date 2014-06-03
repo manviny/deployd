@@ -7,6 +7,12 @@ export NODE_PATH="/usr/lib/node_modules"
  
 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat-centos-or-fedora-linux/
  
+loopback queries
+================
+
+http://chocomputer.com:3000/api/reservas?filter[where][fecha]=2014-06-30
+
+
  
 loopback with mongodb
 =====================
