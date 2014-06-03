@@ -8,6 +8,26 @@ export NODE_PATH="/usr/lib/node_modules"
 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat-centos-or-fedora-linux/
  
  
+loopback with mongodb
+=====================
+
+slc lb project aytob
+
+cd aytob
+
+npm install loopback-datasource-juggler --save
+
+npm install loopback-connector-mongodb --save
+
+slc lb datasource mongodb --connector mongodb
+
+slc lb model reservas --data-source mongodb
+
+ 
+ 
+ 
+ 
+ 
 sudo yum install mysql-server
 sudo chkconfig mysqld on
 sudo service mysqld start
