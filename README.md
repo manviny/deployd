@@ -7,6 +7,10 @@ export NODE_PATH="/usr/lib/node_modules"
  
 http://docs.mongodb.org/manual/tutorial/install-mongodb-on-red-hat-centos-or-fedora-linux/
  
+redirect port 80 to 5000
+
+sudo iptables -t nat -A PREROUTING -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 3000
+ 
 loopback queries
 ================
 
